@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { EASE } from "@/lib/motion";
+import { GradientButton, OutlineButton } from "./ui";
 
 export default function CTABanner() {
   return (
@@ -44,36 +44,21 @@ export default function CTABanner() {
           </div>
 
           <div className="flex items-center gap-6 shrink-0">
-            <Link
+            <OutlineButton
               href="#contact"
-              className="inline-flex items-center justify-center rounded-[10px] uppercase transition-all whitespace-nowrap text-[#E9F4F9] hover:bg-white hover:text-[#1a6bff] hover:[border-color:white]"
-              style={{
-                height: "49px",
-                padding: "15px 45px",
-                border: "1px solid #E9F4F9",
-                fontFamily: "'Chivo Mono', monospace",
-                fontSize: "14px",
-                lineHeight: "130%",
-                letterSpacing: "0.04em",
-              }}
+              className="whitespace-nowrap"
+              style={{ padding: "15px 45px", fontSize: "14px", letterSpacing: "0.04em" }}
             >
               CONTACT US
-            </Link>
-            <Link
+            </OutlineButton>
+            <GradientButton
               href="#demo"
               id="demo"
-              className="inline-flex items-center justify-center rounded-[10px] uppercase transition-all whitespace-nowrap text-white hover:[background:white] hover:text-[#1a6bff] bg-[linear-gradient(106.53deg,#00B4FD_-5.68%,#003ACE_86.98%)]"
-              style={{
-                height: "49px",
-                padding: "15px 45px",
-                fontFamily: "'Chivo Mono', monospace",
-                fontSize: "14px",
-                lineHeight: "130%",
-                letterSpacing: "0.04em",
-              }}
+              className="whitespace-nowrap"
+              style={{ padding: "15px 45px", fontSize: "14px", letterSpacing: "0.04em" }}
             >
               REQUEST DEMO
-            </Link>
+            </GradientButton>
           </div>
         </motion.div>
       </div>

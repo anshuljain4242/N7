@@ -1,22 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { fadeUp, fadeRight } from "@/lib/motion";
 import { EASE } from "@/lib/motion";
-import Link from "next/link";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
+import { GradientButton, OutlineButton, LearnMoreLink } from "./ui";
 
 const marqueeItems = ["N7", "CB7"];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
-};
-
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: EASE } },
-};
 
 function MarqueeSparkle() {
   return (
@@ -44,7 +35,6 @@ function CheckItem({ text }: { text: string }) {
 export default function N7Section() {
   return (
     <section className="bg-[#e9f4f8] overflow-hidden">
-      {/* Marquee ticker */}
       <div className="border-y border-[#000d12]/10 bg-white overflow-hidden" style={{ minHeight: "117px", display: "flex", alignItems: "center" }}>
         <Marquee gradient={false} speed={50} pauseOnHover>
           {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((brand, i) => (
@@ -76,9 +66,7 @@ export default function N7Section() {
         </Marquee>
       </div>
 
-      {/* Main content */}
       <div className="relative overflow-hidden" style={{ paddingTop: "100px", paddingBottom: "96px" }}>
-        {/* Decorative N7 watermark — outline only, centered on Phone 1 */}
         <span
           className="pointer-events-none select-none absolute font-medium leading-none hidden lg:block"
           style={{
@@ -94,11 +82,9 @@ export default function N7Section() {
           N7
         </span>
 
-        {/* Decorative circles — right */}
         <div className="pointer-events-none absolute top-0 right-0 w-[779px] h-[779px] rounded-full border border-[#000d12]/5 -translate-y-1/2 translate-x-1/3" />
         <div className="pointer-events-none absolute top-0 right-0 w-[586px] h-[586px] rounded-full border border-[#000d12]/8 -translate-y-1/2 translate-x-1/3" />
 
-        {/* Decorative arcs — left side, Row 2 area (from Figma Frame 39 Vector) */}
         {[1240, 920, 640, 380].map((size, i) => (
           <div
             key={i}
@@ -114,13 +100,11 @@ export default function N7Section() {
           />
         ))}
 
-        {/* Single shared grid — all 3 rows share the same column tracks */}
         <div
           className="relative page-container grid grid-cols-1 lg:grid-cols-3 items-center"
           style={{ columnGap: "64px", rowGap: "110px" }}
         >
 
-          {/* ── Row 1, Col 1: Product headline ── */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -137,32 +121,15 @@ export default function N7Section() {
               automate and optimize procedures
             </p>
             <div className="flex flex-col gap-4 mt-2 items-center lg:items-start w-full">
-              <Link
-                href="#demo"
-                className="inline-flex items-center justify-center text-white uppercase transition-all hover:[background:white] hover:text-[#1a6bff] bg-[linear-gradient(106.53deg,#00B4FD_-5.68%,#003ACE_86.98%)]"
-                style={{ height: "49px", padding: "15px 40px", fontFamily: "'Chivo Mono', monospace", fontSize: "15px", lineHeight: "130%", letterSpacing: "0.08em", borderRadius: "6px" }}
-              >
-                REQUEST DEMO
-              </Link>
-              <Link href="#" className="flex flex-col items-center lg:items-start gap-[3px] group w-fit">
-                <span className="flex items-center gap-[5px] text-[#1a6bff] uppercase group-hover:opacity-80 transition-opacity" style={{ fontFamily: "'Chivo Mono', monospace", fontSize: "14px", lineHeight: "130%" }}>
-                  LEARN MORE
-                  <svg width="14" height="15" viewBox="0 0 14 15" fill="none" className="shrink-0">
-                    <path d="M2 7.5H11" stroke="#1a6bff" strokeWidth="0.94" strokeLinecap="round" />
-                    <path d="M7.5 3.5L11.5 7.5L7.5 11.5" stroke="#1a6bff" strokeWidth="0.94" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <div className="w-[33px] h-px bg-[#1a6bff] group-hover:w-full transition-[width] duration-300 ease-out" />
-              </Link>
+              <GradientButton href="#demo" className="!rounded-[6px]" style={{ padding: "15px 40px" }}>REQUEST DEMO</GradientButton>
+              <LearnMoreLink href="#" color="#1a6bff" />
             </div>
           </motion.div>
 
-          {/* ── Row 1, Col 2: Phone 1 (center) ── */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }} className="flex justify-center order-3 lg:order-[0]">
-            <Image src="/images/phone-mockup-1.png" alt="Banking app" width={300} height={607} className="w-[240px] lg:w-[300px] h-auto" />
+            <Image src="/images/phone-mockup-1.png" alt="Banking app" width={300} height={607} sizes="(max-width: 768px) 240px, 300px" className="w-[240px] lg:w-[300px] h-auto" />
           </motion.div>
 
-          {/* ── Row 1, Col 3: Feature 1 ── */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }} className="flex flex-col gap-6 max-w-[340px] items-center lg:items-start order-2 lg:order-[0]">
             <div className="flex flex-col gap-4">
               <h3 className="text-[#000d12] font-medium leading-snug text-center lg:text-left" style={{ fontSize: "20px" }}>Fully compliant with regulatory requirement</h3>
@@ -173,10 +140,8 @@ export default function N7Section() {
             </ul>
           </motion.div>
 
-          {/* ── Row 2, Col 1: empty ── */}
           <div className="hidden lg:block" />
 
-          {/* ── Row 2, Col 2: Feature 2 (aligns under Phone 1) ── */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }} className="flex flex-col gap-6 max-w-[340px] items-center lg:items-start order-4 lg:order-[0]">
             <div className="flex flex-col gap-4">
               <h3 className="text-[#000d12] font-medium leading-snug text-center lg:text-left" style={{ fontSize: "20px" }}>No legacy IT systems</h3>
@@ -187,20 +152,16 @@ export default function N7Section() {
             </ul>
           </motion.div>
 
-          {/* ── Row 2, Col 3: Phone 2 (right) ── */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }} className="flex justify-center order-5 lg:order-[0]">
-            <Image src="/images/phone-mockup-2-new.png" alt="Banking app" width={300} height={607} className="w-[240px] lg:w-[300px] h-auto" />
+            <Image src="/images/phone-mockup-2-new.png" alt="Banking app" width={300} height={607} sizes="(max-width: 768px) 240px, 300px" className="w-[240px] lg:w-[300px] h-auto" />
           </motion.div>
 
-          {/* ── Row 3, Col 1: empty ── */}
           <div className="hidden lg:block" />
 
-          {/* ── Row 3, Col 2: Phone 3 (center, same column as Phone 1) ── */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }} className="flex justify-center order-7 lg:order-[0]">
-            <Image src="/images/phone-mockup-3-new.png" alt="Banking app" width={300} height={607} className="w-[240px] lg:w-[300px] h-auto" />
+            <Image src="/images/phone-mockup-3-new.png" alt="Banking app" width={300} height={607} sizes="(max-width: 768px) 240px, 300px" className="w-[240px] lg:w-[300px] h-auto" />
           </motion.div>
 
-          {/* ── Row 3, Col 3: Feature 3 ── */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }} className="flex flex-col gap-6 max-w-[340px] items-center lg:items-start order-6 lg:order-[0]">
             <div className="flex flex-col gap-4">
               <h3 className="text-[#000d12] font-medium leading-snug text-center lg:text-left" style={{ fontSize: "20px" }}>No traditional branches</h3>
@@ -217,7 +178,6 @@ export default function N7Section() {
   );
 }
 
-/* ─── N7 paper-less CTA ─── */
 export function N7CTASection() {
   return (
     <section className="relative bg-[#e9f4f8] overflow-hidden" style={{ paddingTop: "66px", paddingBottom: "100px" }}>
@@ -247,9 +207,7 @@ export function N7CTASection() {
             N7
           </span>
 
-          {/* Two-column layout */}
           <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:min-h-[427px]">
-            {/* LEFT: text (~55%) */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -290,7 +248,6 @@ export function N7CTASection() {
               </p>
             </motion.div>
 
-            {/* RIGHT: buttons (~45%) */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -299,35 +256,8 @@ export function N7CTASection() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6 lg:px-12 pb-10 lg:pb-0 lg:w-[45%]"
               style={{ marginTop: "24px" }}
             >
-              <Link
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-[10px] uppercase transition-all text-[#E9F4F9] hover:bg-white hover:text-[#1a6bff] hover:[border-color:white]"
-                style={{
-                  height: "49px",
-                  padding: "15px 59px",
-                  border: "1px solid #E9F4F9",
-                  fontFamily: "'Chivo Mono', monospace",
-                  fontSize: "15px",
-                  lineHeight: "130%",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                CONTACT US
-              </Link>
-              <Link
-                href="#demo"
-                className="inline-flex items-center justify-center rounded-[10px] uppercase transition-all text-white hover:[background:white] hover:text-[#1a6bff] bg-[linear-gradient(106.53deg,#00B4FD_-5.68%,#003ACE_86.98%)]"
-                style={{
-                  height: "49px",
-                  padding: "15px 51px",
-                  fontFamily: "'Chivo Mono', monospace",
-                  fontSize: "15px",
-                  lineHeight: "130%",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                REQUEST DEMO
-              </Link>
+              <OutlineButton href="#contact" style={{ letterSpacing: "0.04em" }}>CONTACT US</OutlineButton>
+              <GradientButton href="#demo" style={{ letterSpacing: "0.04em" }}>REQUEST DEMO</GradientButton>
             </motion.div>
           </div>
         </motion.div>
