@@ -1,24 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { fadeUp, fadeLeft, fadeRight } from "@/lib/motion";
 import { EASE } from "@/lib/motion";
-import Link from "next/link";
 import Image from "next/image";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
-};
-
-const fadeLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: EASE } },
-};
-
-const fadeRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: EASE } },
-};
+import { GradientButton, OutlineButton, LearnMoreLink } from "./ui";
 
 const whatYouGet = [
   "Customer On-Boarding",
@@ -33,7 +19,6 @@ const whatYouGet = [
 ];
 
 
-/* ─── Section 1: A complete cloud-based core banking ─── */
 export function CB7Section1() {
   return (
     <section className="relative bg-[#000d12] overflow-hidden flex items-center min-h-screen" style={{ minHeight: "619px" }}>
@@ -51,7 +36,6 @@ export function CB7Section1() {
         CB7
       </span>
 
-      {/* Text content — left side */}
       <div className="page-container py-16 relative">
         <motion.div
           initial="hidden"
@@ -70,45 +54,17 @@ export function CB7Section1() {
             Faster time to market with our cloud-based <br/> core banking services
           </p>
           <div className="flex flex-col gap-4 mt-2 items-center lg:items-start w-full">
-            <Link
-              href="#demo"
-              className="inline-flex items-center justify-center text-white uppercase hover:[background:white] hover:text-[#1a6bff] transition-all rounded-[8px]"
-              style={{
-                height: "49px",
-                padding: "15px 40px",
-                background: "linear-gradient(106.53deg, #00B4FD -5.68%, #003ACE 86.98%)",
-                fontFamily: "'Chivo Mono', monospace",
-                fontSize: "15px",
-                lineHeight: "130%",
-                letterSpacing: "0.02em",
-              }}
-            >
-              REQUEST DEMO
-            </Link>
-            <Link href="#" className="flex flex-col items-center lg:items-start gap-[3px] group w-fit">
-              <span
-                className="flex items-center gap-[5px] text-[#00b4fd] uppercase group-hover:opacity-80 transition-opacity"
-                style={{ fontFamily: "'Chivo Mono', monospace", fontSize: "14px", lineHeight: "130%" }}
-              >
-                learn more
-                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" className="shrink-0">
-                  <path d="M2 7.5H11" stroke="#00B4FD" strokeWidth="0.94" strokeLinecap="round" />
-                  <path d="M7.5 3.5L11.5 7.5L7.5 11.5" stroke="#00B4FD" strokeWidth="0.94" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <div className="w-[33px] h-px bg-[#00b4fd] group-hover:w-full transition-[width] duration-300 ease-out" />
-            </Link>
+            <GradientButton href="#demo" className="!rounded-[8px]" style={{ padding: "15px 40px", letterSpacing: "0.02em" }}>REQUEST DEMO</GradientButton>
+            <LearnMoreLink href="#" color="#00b4fd" />
           </div>
         </motion.div>
 
-        {/* Mobile-only laptop mockup */}
         <div className="lg:hidden mt-8">
-          <LaptopMockup />
+          <LaptopMockup priority={true} />
         </div>
 
       </div>
 
-      {/* Laptop — absolutely positioned, bleeds off right edge */}
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -117,19 +73,17 @@ export function CB7Section1() {
         className="absolute hidden lg:block"
         style={{ right: "-139px", width: "651.67px", top: "80.17px" }}
       >
-        <LaptopMockup />
+        <LaptopMockup priority={true} />
       </motion.div>
     </section>
   );
 }
 
-/* ─── Section 2: Feature list — mockup bleeds left (x=-159) ─── */
 export function CB7Section2() {
   return (
     <section className="bg-[#000d12] overflow-hidden" style={{ minHeight: "681px" }}>
       <div className="page-container relative">
         <div className="flex flex-col lg:flex-row items-stretch" style={{marginLeft: "-250px", marginTop:"30px"}}>
-          {/* LEFT: mockup bleeding off left edge */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -141,7 +95,6 @@ export function CB7Section2() {
             <LaptopMockup src="/images/ckyc-dashboard.png" alt="CKYC Dashboard" />
           </motion.div>
 
-          {/* RIGHT: content */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -175,7 +128,6 @@ export function CB7Section2() {
               </div>
             </div>
 
-            {/* Mobile-only laptop mockup */}
             <div className="lg:hidden mt-4">
               <LaptopMockup src="/images/ckyc-dashboard.png" alt="CKYC Dashboard" />
             </div>
@@ -186,7 +138,6 @@ export function CB7Section2() {
   );
 }
 
-/* ─── Section 3: Paper-less CTA — big rounded card (1279×427, r=27) ─── */
 export function CB7Section3() {
   return (
     <section
@@ -208,7 +159,6 @@ export function CB7Section3() {
             minHeight: "427px",
           }}
         >
-          {/* CB7 watermark — hollow outline letters */}
           {/* Mobile watermark — right-anchored */}
           <span
             className="lg:hidden pointer-events-none select-none absolute bottom-0 font-medium leading-none"
@@ -234,9 +184,7 @@ export function CB7Section3() {
             CB7
           </span>
 
-          {/* Two-column layout — text left, buttons right */}
           <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:min-h-[427px]">
-            {/* LEFT: text (~55% width) */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -277,7 +225,6 @@ export function CB7Section3() {
               </p>
             </motion.div>
 
-            {/* RIGHT: buttons centered (~45% width) */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -286,35 +233,8 @@ export function CB7Section3() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-10 px-6 lg:px-12 pb-10 lg:pb-0 lg:w-[45%]"
               style={{ marginTop: "24px" }}
             >
-              <Link
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-[10px] uppercase transition-all text-[#E9F4F9] hover:bg-white hover:text-[#1a6bff] hover:[border-color:white]"
-                style={{
-                  height: "49px",
-                  padding: "15px 59px",
-                  border: "1px solid #E9F4F9",
-                  fontFamily: "'Chivo Mono', monospace",
-                  fontSize: "15px",
-                  lineHeight: "130%",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                CONTACT US
-              </Link>
-              <Link
-                href="#demo"
-                className="inline-flex items-center justify-center rounded-[10px] uppercase transition-all text-white hover:[background:white] hover:text-[#1a6bff] bg-[linear-gradient(106.53deg,#00B4FD_-5.68%,#003ACE_86.98%)]"
-                style={{
-                  height: "49px",
-                  padding: "15px 51px",
-                  fontFamily: "'Chivo Mono', monospace",
-                  fontSize: "15px",
-                  lineHeight: "130%",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                REQUEST DEMO
-              </Link>
+              <OutlineButton href="#contact">CONTACT US</OutlineButton>
+              <GradientButton href="#demo">REQUEST DEMO</GradientButton>
             </motion.div>
           </div>
         </motion.div>
@@ -323,12 +243,9 @@ export function CB7Section3() {
   );
 }
 
-/* ─── Shared UI ─── */
-
-function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", imageOpacity = 0.8 }: { src?: string; alt?: string; imageOpacity?: number }) {
+function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", imageOpacity = 0.8, priority = false }: { src?: string; alt?: string; imageOpacity?: number; priority?: boolean }) {
   return (
     <div style={{ width: "100%" }}>
-      {/* Screen / lid */}
       <div
         style={{
           border: "2px solid #00b4fd",
@@ -338,7 +255,6 @@ function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", im
           overflow: "hidden",
         }}
       >
-        {/* Top bezel with camera */}
         <div
           style={{
             height: "16px",
@@ -358,7 +274,6 @@ function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", im
           />
         </div>
 
-        {/* Screen content — inset ~10px sides, clip to 3/4 height */}
         <div style={{ padding: "0 10px" }}>
           <div style={{ overflow: "hidden", aspectRatio: "1440/768" }}>
             <Image
@@ -366,7 +281,8 @@ function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", im
               alt={alt}
               width={1440}
               height={1024}
-              priority
+              priority={priority}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full h-auto block"
               style={{ opacity: imageOpacity }}
             />
@@ -374,7 +290,6 @@ function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", im
         </div>
       </div>
 
-      {/* Keyboard base — extends 57px wider than lid on each side */}
       <div
         style={{
           border: "2px solid #00b4fd",
@@ -388,7 +303,6 @@ function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", im
           marginRight: "-57px",
         }}
       >
-        {/* Trackpad */}
         <div
           style={{
             position: "absolute",
@@ -406,4 +320,3 @@ function LaptopMockup({ src = "/images/aml-dashboard.png", alt = "Dashboard", im
     </div>
   );
 }
-

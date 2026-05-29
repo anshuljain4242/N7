@@ -56,7 +56,6 @@ export default function BlogSection() {
       <div className="page-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-0 items-start">
 
-          {/* ── LEFT: heading + button (~48% of content area) ── */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -88,10 +87,8 @@ export default function BlogSection() {
             </Link>
           </motion.div>
 
-          {/* ── RIGHT: cards (~52% of content area) ── */}
           <div className="flex flex-col gap-5 lg:ml-auto lg:w-[52%] w-full">
 
-            {/* Featured card — flex row, thumbnail self-centered with inset */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -100,7 +97,6 @@ export default function BlogSection() {
               className="flex overflow-hidden"
               style={{ background: "#01141B", borderRadius: "18px", minHeight: "318px" }}
             >
-              {/* Thumbnail — same width as a small card, even margin inside card */}
               <div
                 className="shrink-0 relative overflow-hidden"
                 style={{
@@ -114,7 +110,6 @@ export default function BlogSection() {
                 <Image src="/images/blog-thumb-1.png" alt="Blog thumbnail" fill className="object-cover" />
               </div>
 
-              {/* Content — takes remaining space */}
               <div className="flex flex-col justify-between flex-1" style={{ padding: "28px 24px 24px", gap: "24px" }}>
                 <div className="flex flex-col" style={{ gap: "11px" }}>
                   <span
@@ -152,7 +147,6 @@ export default function BlogSection() {
               </div>
             </motion.div>
 
-            {/* Two small cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {posts.slice(1).map((post, i) => (
                 <motion.div
@@ -208,7 +202,6 @@ export default function BlogSection() {
               ))}
             </div>
 
-            {/* READ ALL INSIGHTS — right-aligned below small cards */}
             <div className="mt-2 flex justify-end">
               <Link href="#" className="flex flex-col items-start gap-[4px] group w-fit">
                 <span

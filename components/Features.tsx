@@ -1,13 +1,14 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { fadeUp } from "@/lib/motion";
 import { EASE } from "@/lib/motion";
-
-/* ── Feature icons matching provided brand images ── */
+import { LearnMoreLink } from "./ui";
 
 // Core Banking CB7 — blue swirl/pinwheel (Image #19)
-function CB7Icon() {
+const CB7Icon = memo(function CB7Icon() {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48">
       <defs>
@@ -16,7 +17,6 @@ function CB7Icon() {
           <stop offset="100%" stopColor="#29AAFF"/>
         </linearGradient>
       </defs>
-      {/* 6 curved blades rotated around centre */}
       {[0,60,120,180,240,300].map((deg, i) => (
         <g key={i} transform={`rotate(${deg} 24 24)`}>
           <path
@@ -27,10 +27,10 @@ function CB7Icon() {
       ))}
     </svg>
   );
-}
+});
 
 // Digital Banking N7 — atom / two overlapping ellipses (Image #20 style)
-function N7Icon() {
+const N7Icon = memo(function N7Icon() {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
       <defs>
@@ -45,10 +45,10 @@ function N7Icon() {
                transform="rotate(45 24 24)" />
     </svg>
   );
-}
+});
 
 // Open Banking — same atom style (Image #20)
-function OpenBankingIcon() {
+const OpenBankingIcon = memo(function OpenBankingIcon() {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
       <defs>
@@ -63,7 +63,7 @@ function OpenBankingIcon() {
                transform="rotate(45 24 24)" />
     </svg>
   );
-}
+});
 
 // Compass-cross icon shared by both NBFC products (Images #21 / #22)
 function NBFCCrossIcon({ id }: { id: string }) {
@@ -75,7 +75,6 @@ function NBFCCrossIcon({ id }: { id: string }) {
           <stop offset="100%" stopColor="#29AAFF"/>
         </linearGradient>
       </defs>
-      {/* 4 concave-tipped arms — top, right, bottom, left */}
       <path d="M24 24 C22 20 19 12 21 6 C22 3 26 3 27 6 C29 12 26 20 24 24Z"
             fill={`url(#${id})`} />
       <path d="M24 24 C28 22 36 19 42 21 C45 22 45 26 42 27 C36 29 28 26 24 24Z"
@@ -88,27 +87,8 @@ function NBFCCrossIcon({ id }: { id: string }) {
   );
 }
 
-function LoanOriginationIcon() { return <NBFCCrossIcon id="loig" />; }
-function LoanManagementIcon()  { return <NBFCCrossIcon id="lmig" />; }
-
-function LearnMore({ href }: { href: string }) {
-  return (
-    <Link href={href} className="flex flex-col items-center lg:items-start gap-[3px] group w-fit">
-      <span
-        className="flex items-center gap-[5px] text-[#00b4fd] uppercase group-hover:opacity-80 transition-opacity"
-        style={{ fontFamily: "'Chivo Mono', monospace", fontSize: "14px", lineHeight: "130%" }}
-      >
-        learn more
-        {/* right-arrow: two angled strokes */}
-        <svg width="14" height="15" viewBox="0 0 14 15" fill="none" className="shrink-0">
-          <path d="M2 7.5H11" stroke="#00B4FD" strokeWidth="0.94" strokeLinecap="round" />
-          <path d="M7.5 3.5L11.5 7.5L7.5 11.5" stroke="#00B4FD" strokeWidth="0.94" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </span>
-      <div className="w-[33px] h-px bg-[#00b4fd] group-hover:w-full transition-[width] duration-300 ease-out" />
-    </Link>
-  );
-}
+const LoanOriginationIcon = memo(function LoanOriginationIcon() { return <NBFCCrossIcon id="loig" />; });
+const LoanManagementIcon = memo(function LoanManagementIcon() { return <NBFCCrossIcon id="lmig" />; });
 
 const cards = [
   {
@@ -140,15 +120,6 @@ const cards = [
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: 0.05 * i, duration: 0.6, ease: EASE },
-  }),
-};
-
 export default function Features() {
   return (
     <section id="solutions" className="relative bg-[#000d12] overflow-hidden" style={{ minHeight: "1177px" }}>
@@ -168,10 +139,8 @@ export default function Features() {
       />
 
       <div className="page-container pt-[47px] pb-24">
-        {/* Figma: CTA left (w=433, gap 48px) | Cards right (w=613, flex-wrap, gap 52×76) */}
         <div className="flex flex-col lg:flex-row gap-16 items-start">
 
-          {/* LEFT — CTA block */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -203,8 +172,7 @@ export default function Features() {
             </Link>
           </motion.div>
 
-          {/* RIGHT — 2-column cards, no panel borders */}
-          <div className="grid sm:grid-cols-2 gap-y-[52px] gap-x-[76px] max-w-[613px] mx-auto lg:ml-[150px] lg:mr-[25px]">
+          <div className="grid sm:grid-cols-2 gap-y-[52px] gap-x-[76px] max-w-[613px] mx-auto" style={{ marginLeft: "auto", marginRight: 0 }}>
             {cards.map((card, i) => (
               <motion.div
                 key={card.title}
@@ -216,7 +184,6 @@ export default function Features() {
                 className="flex flex-col items-center lg:items-start"
                 style={{ gap: "26px" }}
               >
-                {/* Icon row — with optional NBFC tag */}
                 <div className="flex items-end justify-between w-full">
                   {card.icon}
                   {card.tag && (
@@ -229,7 +196,6 @@ export default function Features() {
                   )}
                 </div>
 
-                {/* Text block — title + description */}
                 <div className="flex flex-col items-center lg:items-start" style={{ gap: "32px" }}>
                   <h3
                     className="text-[#e9f4f8] font-normal leading-[120%] text-center lg:text-left"
@@ -245,7 +211,7 @@ export default function Features() {
                   </p>
                 </div>
 
-                <LearnMore href="#" />
+                <LearnMoreLink href="#" color="#00b4fd" />
               </motion.div>
             ))}
           </div>

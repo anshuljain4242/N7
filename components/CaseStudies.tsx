@@ -63,7 +63,6 @@ export default function CaseStudies() {
 
         <div style={{ maxWidth: "950px", margin: "0 auto" }}>
 
-          {/* Card */}
           <div className="relative overflow-hidden" style={{ background: "#01141B", borderRadius: "18px" }}>
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
@@ -75,7 +74,6 @@ export default function CaseStudies() {
                 className="flex flex-col lg:flex-row items-stretch"
                 style={{ minHeight: "439px" }}
               >
-                {/* Image */}
                 <div
                   className="shrink-0 relative overflow-hidden"
                   style={{
@@ -86,10 +84,10 @@ export default function CaseStudies() {
                     alignSelf: "center",
                   }}
                 >
-                  <Image src="/images/blog-thumb-1.png" alt="Case study" fill className="object-cover" />
+                  <Image src="/images/blog-thumb-1.png" alt="Case study" fill sizes="(max-width: 768px) 100vw, 380px" className="object-cover" />
                 </div>
 
-                <div className="flex flex-col justify-center items-center lg:items-start flex-1 py-10 px-6 lg:pr-10" style={{ gap: "28px", paddingLeft: undefined }} >
+                <div className="flex flex-col justify-center items-center lg:items-start flex-1 py-10" style={{ gap: "28px", paddingLeft: "clamp(24px, 5vw, 60px)", paddingRight: "clamp(24px, 4vw, 40px)" }}>
                   <div className="flex flex-col items-center lg:items-start" style={{ gap: "16px" }}>
                     <span style={{
                       fontFamily: "'Chivo Mono', monospace", fontSize: "12px",
@@ -131,7 +129,6 @@ export default function CaseStudies() {
             </AnimatePresence>
           </div>
 
-          {/* Bottom nav */}
           <div className="flex flex-col items-center gap-4 lg:relative lg:flex-row lg:justify-center" style={{ marginTop: "25px" }}>
             <div className="flex items-center gap-5">
               <ArrowBtn dir="left" onClick={() => go(current - 1)} />

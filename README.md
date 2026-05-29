@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# N7 — The New Foundation of Modern Banking
+
+Marketing website for **N7 & CB7** by Linktia Infosystems — cloud-based core banking and digital banking solutions.
+
+---
+
+## Tech Stack
+
+| Tool | Version |
+|---|---|
+| Next.js | 16.2.6 |
+| React | 19.2.4 |
+| TypeScript | 5.x |
+| Tailwind CSS | 4.x |
+| Framer Motion | 12.x |
+| Node.js (recommended) | 18+ |
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18 or higher
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+```bash
+git clone https://github.com/anshuljain4242/N7.git
+cd N7
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. The page hot-reloads as you edit files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+├── app/
+│   ├── globals.css       # Tailwind v4 config + global styles
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page — composes all sections
+├── components/
+│   ├── ui.tsx            # Shared primitives (GradientButton, OutlineButton, LearnMoreLink)
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── Features.tsx
+│   ├── CB7Sections.tsx
+│   ├── N7Section.tsx
+│   ├── BlogSection.tsx
+│   ├── CaseStudies.tsx
+│   ├── CTABanner.tsx
+│   └── Footer.tsx
+├── lib/
+│   └── motion.ts         # Shared Framer Motion variants + easing
+└── public/
+    └── images/           # Static assets
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Key Conventions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Shared UI primitives** live in `components/ui.tsx` — use `GradientButton`, `OutlineButton`, and `LearnMoreLink` instead of duplicating button/link markup.
+- **Animation variants** (`fadeUp`, `fadeLeft`, `fadeRight`) and the `EASE` cubic-bezier are exported from `lib/motion.ts`.
+- **Responsive layout** uses Tailwind utility classes with `lg:` breakpoint for desktop overrides. The `.page-container` class (defined in `globals.css`) handles consistent horizontal padding across breakpoints.
+- **Fonts** — Archivo (body/headings), Chivo Mono (buttons/labels), Roboto (brand ticker) — loaded via Google Fonts in `globals.css`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Deployment
+
+The easiest way to deploy is [Vercel](https://vercel.com):
+
+```bash
+npx vercel
+```
+
+Or connect the GitHub repo to Vercel for automatic deployments on push.
