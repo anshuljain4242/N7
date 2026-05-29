@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeUp } from "@/lib/motion";
@@ -94,8 +95,13 @@ export default function Hero() {
 }
 
 function AppMockup() {
+  const [hovered, setHovered] = useState(false);
   return (
-    <div className="relative w-full max-w-[580px]">
+    <div
+      className="relative w-full max-w-[580px]"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <Image
         src="/images/hero-mockup.png"
         alt="Banking app mockup"
@@ -103,6 +109,16 @@ function AppMockup() {
         height={520}
         priority
         className="w-full h-auto object-contain"
+        style={{ opacity: hovered ? 0 : 1, transition: "opacity 0.35s ease" }}
+      />
+      <Image
+        src="/images/hero-mockup-hover.png"
+        alt="Banking app mockup hover"
+        width={580}
+        height={520}
+        priority
+        className="absolute inset-0 w-full h-auto object-contain"
+        style={{ opacity: hovered ? 1 : 0, transition: "opacity 0.35s ease" }}
       />
     </div>
   );
