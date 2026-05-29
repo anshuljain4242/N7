@@ -81,7 +81,7 @@ export default function Navbar() {
 
       {/* Mobile: top bar */}
       <header className="fixed top-0 left-0 right-0 z-50 md:hidden bg-[#0c0c0c]/90 backdrop-blur-md">
-        <div className="flex items-center justify-between px-6 h-14 border-b border-[#e9f4f8]/5">
+        <div className="flex items-center justify-between h-14 border-b border-[#e9f4f8]/5" style={{ paddingLeft: "max(24px, env(safe-area-inset-left))", paddingRight: "max(24px, env(safe-area-inset-right))" }}>
           <Link href="/" className="text-[#e9f4f8] font-bold text-xl tracking-tight">
             N7
           </Link>
