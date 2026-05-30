@@ -1,5 +1,27 @@
 import type { Metadata, Viewport } from "next";
+import { Archivo, Chivo_Mono, Roboto } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+const chivoMono = Chivo_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-chivo-mono",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -18,7 +40,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${archivo.variable} ${chivoMono.variable} ${roboto.variable}`}>{children}</body>
     </html>
   );
 }
